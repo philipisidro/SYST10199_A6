@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!--change-->
-
 <html lang="en">
     
 <?php require('./connect.php');?>
@@ -30,31 +28,29 @@
             $inputs[] = [$sportsID, $name, $playerCount, $indoor, $referee, $origin];
             
             for ($i = 0; $i < count($inputs); $i++){
-                clean($inputs[$i]);
+                if(!empty($inputs[i])){
+                    echo "loop ran";
+                    $data = trim($inputs[$i]);
+                    $dataStriped = stripslashes($data);
+                    $dataHTML = htmlspecialchars($data);
+                    $inputs[$i] = $dataHTML;
+                    if ($i == count($inputs)){
+                        $insertCommand = "INSERT INTO sport (sport_id, name, player_count, indoor, referee_count, origin) VALUES($sportsID, '$name', $playerCount, '$indoor', $referee, '$origin')";
+                        $insertQuery = $dbConn->prepare($insertCommand);
+                        $insertExecute = $insertQuery->execute();
+                    }
+                }else{
+                    $errMsg = "Fill all spots";
+                }       
             }
-                   
-            $insertCommand = "INSERT INTO sport (sport_id, name, player_count, indoor, referee_count, origin) VALUES($sportsID, '$name', $playerCount, '$indoor', $referee, '$origin')";
-            $insertQuery = $dbConn->prepare($insertCommand);
-            $insertExecute = $insertQuery->execute();
-            
-            if($insertExecute){
-                echo "Query executed successfully";
-            } else {
-                echo "Not so successful";
-            }
-        }
-        } catch (PDOException $error) {
-            echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
-        }
-        function clean($d){
-        $data = trim($d);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+        }   
+    }catch (PDOException $error) {
+        echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
+        
     }
     ?>
     <form action="" method="post">
-        <h1>Insert change</h1>
+        <h1>Insert</h1>
         <div class="inputs">
             <label for="sportsID"> Sports ID:</label>
             <input type="number" name="sportsID" id="sportsID">
@@ -85,8 +81,25 @@
             <input type="text" name="origin" id="origin">
         </div>
         
-        <input type="submit" name="submit" value="Submit">
+        <div class="buttons">
+            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="homePage "value="Home Page">
+        </div>        
         
+        <div class"buttons">
+            <?php
+            if (isset($submitButton)){
+                if($insertExecute){
+                    echo "Query executed successfully";
+                }else {
+                    if (empty($errmsh)){
+                        echo "Query failed Bad Query";
+                    }
+                    echo "Query failed! ".$errMsg;
+                }
+            }
+            ?>
+        </div>
     </form>
     
    

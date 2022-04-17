@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--change-->
 <?php require('./connect.php');?>
 
 <head>
@@ -33,7 +32,13 @@
             $inputs[] = [$where1, $where2, $newName, $newPlayerCount, $newIndoor, $newReferee, $newOrigin];
             
             for ($i = 0; $i < count($inputs); $i++){
-                clean($inputs[$i]);
+                if (!empty(inputs[i]) || $i != count($inputs)){
+                    clean($inputs[$i]);
+                    
+                }else {
+                    $errMsg = "Fill all spots";
+                }
+                
             }
             if ($where1 == 'name'){
                 echo "if statement worked";
@@ -90,11 +95,8 @@
                 }
                 }else {
                 echo "<p> no valid entry within database </p>";
-                
+                }
             }
-            
-            }
-            
             }catch (PDOException $error) {
             echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
         }
@@ -151,7 +153,18 @@
             <input type="submit" name="homePage "value="Home Page">
         </div>
         
-    
+        <?php
+            if (isset($submitButton)){
+                if($updateExecute){
+                    echo "Query executed successfully";
+                }else {
+                    if (empty($errMsg)){
+                        echo "Query failed Bad Query";
+                    }
+                    echo "Query failed! ".$errMsg;
+                }
+            }
+            ?>
     </form>
 
 
