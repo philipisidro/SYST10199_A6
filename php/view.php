@@ -29,7 +29,7 @@
     <form action="" method="post">
         <label for="recordNumbers">Number of Records</label>
         <input type="number" name="recordNumbers" id="recordNumber">
-        <input type="submit" value="Submit">
+        <input type="submit" name="submit" value="Submit">
         <p>or</p>
         <button id="AllRecords">All Records</button>
     </form>
