@@ -24,7 +24,7 @@
             $results = mysqli_query($dbConn, $viewCommand);
             echo $results;
             
-        }
+                   }
     }catch (PDOException $error){
         echo "Connection error".$error->getMessage();
     }
