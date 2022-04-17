@@ -17,14 +17,10 @@
         $submitButton = filter_input(INPUT_POST, 'submit');
         if (isset($submitButton)){
             $recordNumbers = filter_input(INPUT_POST, 'recordNumber');
-            $viewCommand = "SELECT * FROM sport WHERE sport_id='$recordNumbers'";
-            $viewQuery = $dbConn->prepare($viewCommand);
-            $viewExecute = $viewQuery->execute();
-                        
-            $results = mysqli_query($dbConn, $viewCommand);
+            $viewCommand = "SELECT * FROM sport WHERE sport_id='$recordNumbers'";   
+            $results = mysqli_select_db($dbConn, $viewCommand);
             echo $results;
-            
-                   }
+        }
     }catch (PDOException $error){
         echo "Connection error".$error->getMessage();
     }
