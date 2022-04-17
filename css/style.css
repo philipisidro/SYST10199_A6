@@ -1,0 +1,35 @@
+body{
+    display:flex;
+    flex-direction: column;
+
+    margin:auto;
+    width: 50%;
+    padding: 10px;
+}
+
+form{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+}
+
+.inputs{
+    margin: 5px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    width: 30%;
+}
+
+button{
+    margin: 10px;
+}
