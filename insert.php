@@ -14,7 +14,12 @@
     <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
-        echo "<div class='connectionMsg'>Connection was successfull</div>";  
+        echo "<div class='connectionMsg'>Connection was successfull</div>";
+        
+        $homePageButton = filter_input(INPUT_POST, 'homePage');
+        if (isset($homePageButton)){
+            echo "It worked";
+        }
         
         $submitButton = filter_input(INPUT_POST, 'submit');
         if (isset($submitButton)){
@@ -27,26 +32,21 @@
             
             $inputs[] = [$sportsID, $name, $playerCount, $indoor, $referee, $origin];
             
-            for ($i = 0; $i < count($inputs); $i++){
-                if(!empty($inputs[i])){
-                    echo "loop ran";
-                    $data = trim($inputs[$i]);
-                    $dataStriped = stripslashes($data);
-                    $dataHTML = htmlspecialchars($data);
-                    $inputs[$i] = $dataHTML;
-                    if ($i == count($inputs)){
-                        $insertCommand = "INSERT INTO sport (sport_id, name, player_count, indoor, referee_count, origin) VALUES($sportsID, '$name', $playerCount, '$indoor', $referee, '$origin')";
-                        $insertQuery = $dbConn->prepare($insertCommand);
-                        $insertExecute = $insertQuery->execute();
-                    }
+            $insertCommand = "INSERT INTO sport (sport_id, name, player_count, indoor, referee_count, origin) VALUES($sportsID, '$name', $playerCount, '$indoor', $referee, '$origin')";
+            $insertQuery = $dbConn->prepare($insertCommand);
+            $insertExecute = $insertQuery->execute();
+            if($insertExecute){
+                echo "Query executed successfully";
+            }else{
+                if(empty($errMsg)){
+                    echo "Query failed Bad Query";
                 }else{
-                    $errMsg = "Fill all spots";
-                }       
+                    echo "Query failed! ".$errMsg;
+                }
             }
-        }   
+        }
     }catch (PDOException $error) {
         echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
-        
     }
     ?>
     <form action="" method="post">
@@ -68,7 +68,10 @@
         
         <div class="inputs">
             <label for="indoor"> Indoor:</label>
-            <input type="text" name="indoor" id="indoor">
+            <select name="indoor">
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            </select>    
         </div>
         
         <div class="inputs">
@@ -83,22 +86,11 @@
         
         <div class="buttons">
             <input type="submit" name="submit" value="Submit">
-            <input type="submit" name="homePage "value="Home Page">
+<!--            <input type="submit" name="homePage" value="Home Page">-->
         </div>        
         
         <div class"buttons">
-            <?php
-            if (isset($submitButton)){
-                if($insertExecute){
-                    echo "Query executed successfully";
-                }else {
-                    if (empty($errmsh)){
-                        echo "Query failed Bad Query";
-                    }
-                    echo "Query failed! ".$errMsg;
-                }
-            }
-            ?>
+
         </div>
     </form>
     
