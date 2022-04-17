@@ -32,76 +32,75 @@
             $inputs[] = [$where1, $where2, $newName, $newPlayerCount, $newIndoor, $newReferee, $newOrigin];
             
             for ($i = 0; $i < count($inputs); $i++){
-                if (!empty(inputs[i]) || $i != count($inputs)){
+                if (!empty($inputs[$i]) || $i != count($inputs)){
                     clean($inputs[$i]);
                     
+                    if ($where1 == 'name'){
+                        echo "if statement worked";
+                        $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
+                        $updateQuery = $dbConn->prepare($updateCommand);
+                        $updateExecute = $updateQuery->execute();
+                        if($updateExecute){
+                            echo "Query executed successfully";
+                        } else {
+                            echo "Not so successful";
+                        }
+                    }else if ($where1 == 'playerCount'){
+                        $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
+                        $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
+                        $updateQuery = $dbConn->prepare($updateCommand);
+                        $updateExecute = $updateQuery->execute();
+                        if($updateExecute){
+                            echo "Query executed successfully";
+                        } else {
+                            echo "Not so successful";
+                        }
+                    }else if ($where1 == 'indoor'){
+                        $updateCommand = "UPDATE sport SET indoor = $newIndoor WHERE indoor = $where2";
+                        $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
+                        $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
+                        $updateQuery = $dbConn->prepare($updateCommand);
+                        $updateExecute = $updateQuery->execute();
+                        if($updateExecute){
+                            echo "Query executed successfully";
+                        } else {
+                            echo "Not so successful";
+                        }
+                    }else if ($where1 == 'referee'){
+                        $updateCommand = "UPDATE sport SET referee = '$newReferee' WHERE referee = '$where2'";
+                        $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
+                        $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
+                        $updateQuery = $dbConn->prepare($updateCommand);
+                        $updateExecute = $updateQuery->execute();
+                        if($updateExecute){
+                            echo "Query executed successfully";
+                        } else {
+                            echo "Not so successful";
+                        } 
+                    }else if ($where1 == "origin"){
+                        $updateCommand = "UPDATE sport SET origin = '$newReferee' WHERE referee = '$where2'";
+                        $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
+                        $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
+                        $updateQuery = $dbConn->prepare($updateCommand);
+                        $updateExecute = $updateQuery->execute();
+                        if($updateExecute){
+                            echo "Query executed successfully";
+                        } else {
+                            echo "Not so successful";
+                        }
+                    }else {
+                        echo "<p> no valid entry within database </p>";
+                    }
                 }else {
                     $errMsg = "Fill all spots";
                 }
-                
             }
-            if ($where1 == 'name'){
-                echo "if statement worked";
-                $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
-                $updateQuery = $dbConn->prepare($updateCommand);
-                $updateExecute = $updateQuery->execute();
-                if($updateExecute){
-                echo "Query executed successfully";
-                } else {
-                echo "Not so successful";
-                }
-            }else if ($where1 == 'playerCount'){
-                $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
-                $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
-                $updateQuery = $dbConn->prepare($updateCommand);
-                $updateExecute = $updateQuery->execute();
-                if($updateExecute){
-                echo "Query executed successfully";
-                } else {
-                echo "Not so successful";
-                }
-            }else if ($where1 == 'indoor'){
-                $updateCommand = "UPDATE sport SET indoor = $newIndoor WHERE indoor = $where2";
-                $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
-                $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
-                $updateQuery = $dbConn->prepare($updateCommand);
-                $updateExecute = $updateQuery->execute();
-                if($updateExecute){
-                echo "Query executed successfully";
-                } else {
-                echo "Not so successful";
-                }
-            }else if ($where1 == 'referee'){
-                $updateCommand = "UPDATE sport SET referee = '$newReferee' WHERE referee = '$where2'";
-                $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
-                $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
-                $updateQuery = $dbConn->prepare($updateCommand);
-                $updateExecute = $updateQuery->execute();
-                if($updateExecute){
-                echo "Query executed successfully";
-                } else {
-                echo "Not so successful";
-                } 
-            }else if ($where1 == "origin"){
-                $updateCommand = "UPDATE sport SET origin = '$newReferee' WHERE referee = '$where2'";
-                $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE playerCount = $where2";
-                $updateCommand = "UPDATE sport SET name='$newName' WHERE name='$where2'";
-                $updateQuery = $dbConn->prepare($updateCommand);
-                $updateExecute = $updateQuery->execute();
-                if($updateExecute){
-                    echo "Query executed successfully";
-                } else {
-                    echo "Not so successful";
-                }
-                }else {
-                echo "<p> no valid entry within database </p>";
-                }
-            }
-            }catch (PDOException $error) {
-            echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
+            
         }
-        
-        $submitButton = filter_input(INPUT_POST, 'submit');
+    }catch (PDOException $error) {
+        echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
+    }
+    
         
     function clean($d){
         $data = trim($d);
