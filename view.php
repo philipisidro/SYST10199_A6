@@ -13,6 +13,7 @@
 <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
+        echo "<div class='connectionMsg'>Connection was successfull</div>";
 
         $submitButton = filter_input(INPUT_POST, 'submit');
         if (isset($submitButton)){
@@ -22,7 +23,7 @@
             echo $results;
         }
     }catch (PDOException $error){
-        echo "Connection error".$error->getMessage();
+        echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
     }
 ?>
     <form action="" method="post">

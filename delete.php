@@ -14,7 +14,7 @@
     <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
-        echo "<h1> Connection was successfull </h1>";
+        echo "<div class='connectionMsg'>Connection was successfull</div>";
         
         $submitButton = filter_input(INPUT_POST, 'submit');
         if (isset($submitButton)){
@@ -35,7 +35,7 @@
             
         }     
     }catch(PDOException $error) {
-        echo "connection error".$error->getMessage();
+        echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
     }
     
         function clean($d){
@@ -56,8 +56,8 @@
         </div>
             
         <div class="buttons">
-            <input class="btn" type="submit" name="submit" value="Submit">
-            <input class="btn" type="submit" name="homepage"value="Home Page">
+            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="homepage"value="Home Page">
         </div>
     </form>
 
