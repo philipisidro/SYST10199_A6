@@ -11,11 +11,11 @@
     <title>Insert</title>
 </head>
 <body>
-    
+    <div class="connectionMsg">Connection was successfull</div>
     <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
-        echo "<h1> Connection was successfull </h1>";  
+        echo "<div class='connectionMsg'>Connection was successfull</div>";  
         
         $submitButton = filter_input(INPUT_POST, 'submit');
         if (isset($submitButton)){
@@ -43,7 +43,7 @@
             }
         }
         } catch (PDOException $error) {
-            echo "connection error".$error->getMessage();
+            echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
         }
         
         function clean($d){
