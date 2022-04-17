@@ -28,7 +28,7 @@
             $inputs[] = [$sportsID, $name, $playerCount, $indoor, $referee, $origin];
             
             for ($i = 0; $i < count($inputs); $i++){
-                clean($inputs[i]);
+                clean($inputs[$i]);
             }
                    
             $insertCommand = "INSERT INTO sport (sport_id, name, player_count, indoor, referee_count, origin) VALUES($sportsID, '$name', $playerCount, '$indoor', $referee, '$origin')";
