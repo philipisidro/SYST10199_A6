@@ -11,31 +11,50 @@
 </head>
 <body>
     <h1>Delete</h1>
-
-    <form action="POST">
-        <label for="name">Name: </label>
-        <input type="text" name="name" id="name">
-
-        <input type="button" value="Submit">
-        <input type="button" value="Home Page">
-    </form>
-
     <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
-        echo "<h1> Connection was successfull </h>";
+        echo "<h1> Connection was successfull </h1>";
         
-        
-        $deleteName = filter_input(INPUT_POST, $name);
-        $deleteCommand = "DELETE FROM sport WHERE name = '$name'";
-        $deleteQuery = $dbConn->prepare($deleteCommand);
-        $deleteExecute = $deleteQuery->execute();
-        
-        
+        $submitButton = filter_input(INPUT_POST, 'submit');
+        if (isset($submitButton)){
+            echo "submit work";
+            $deleteName = strval(filter_input(INPUT_POST, 'name'));
+            clean($deleteName);
+            $deleteCommand = "DELETE FROM sport WHERE name='$deleteName'";
+            echo $deletCommand;
+            $deleteQuery = $dbConn->prepare($deleteCommand);
+            $deleteExecute = $deleteQuery->execute();
+            
+            if ($deleteExecute){
+                echo "Query executed successfully";
+            } else {
+                echo "Not so successful";
+            }
+        }else {
+            
+        }     
     }catch(PDOException $error) {
         echo "connection error".$error->getMessage();
     }
+    
+        function clean($d){
+        $data = trim($d);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+        }
     ?>
+
+    <form action="" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name">
+
+        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="homepage"value="Home Page">
+    </form>
+
+
     
 </body>
 </html>
