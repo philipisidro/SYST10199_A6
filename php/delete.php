@@ -11,7 +11,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Delete</h1>
     <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
@@ -48,11 +47,18 @@
     ?>
 
     <form action="" method="post">
-        <label for="name">Name: </label>
-        <input type="text" name="name" id="name">
 
-        <input type="submit" name="submit" value="Submit">
-        <input type="submit" name="homepage"value="Home Page">
+        <h1>Delete</h1>
+        
+        <div class="inputs">
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name">
+        </div>
+            
+        <div class="buttons">
+            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="homepage"value="Home Page">
+        </div>
     </form>
 
 

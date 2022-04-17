@@ -54,25 +54,37 @@
     }
         
         ?>
-    <h1>Insert change</h1>
     <form action="" method="post">
-        <label for="sportsID"> Sports ID:</label>
-        <input type="number" name="sportsID" id="sportsID">
+        <h1>Insert change</h1>
+        <div class="inputs">
+            <label for="sportsID"> Sports ID:</label>
+            <input type="number" name="sportsID" id="sportsID">
+        </div>
         
-        <label for="Name"> Name:</label>
-        <input type="text" name="name" id="name">
+        <div class="inputs">
+            <label for="Name"> Name:</label>
+            <input type="text" name="name" id="name">
+        </div>
         
-        <label for="playerCount"> Player Count:</label>
-        <input type="number" name="playerCount" id="playerCount">
+        <div class="inputs">
+            <label for="playerCount"> Player Count:</label>
+            <input type="number" name="playerCount" id="playerCount">
+        </div>
         
-        <label for="indoor"> Indoor:</label>
-        <input type="text" name="indoor" id="indoor">
+        <div class="inputs">
+            <label for="indoor"> Indoor:</label>
+            <input type="text" name="indoor" id="indoor">
+        </div>
         
-        <label for="referee"> Referee:</label>
-        <input type="number" name="referee" id="referee">
+        <div class="inputs">
+            <label for="referee"> Referee:</label>
+            <input type="number" name="referee" id="referee">
+        </div>
         
-        <label for="origin"> Origin:</label>
-        <input type="text" name="origin" id="origin">
+        <div class="inputs">
+            <label for="origin"> Origin:</label>
+            <input type="text" name="origin" id="origin">
+        </div>
         
         <input type="submit" name="submit" value="Submit">
         

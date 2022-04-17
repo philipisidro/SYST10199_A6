@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
-<body>
-    <h1>Update</h1>
-    
+<body>    
         <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
@@ -115,30 +113,45 @@
 
     <form action="" method="post">
 
+        <h1>Update</h1>
         
-        <label for="where1">Where:</label>
-        <input type="text" name="where1" id="where">
+        <div class="inputs">
+            <label for="where1">Where:</label>
+            <input type="text" name="where1" id="where">
         
-        <label for="where2"> = </label>
-        <input type="text" name="where2" id="where">
+            <label for="where2"> = </label>
+            <input type="text" name="where2" id="where">
+        </div>
         
-        <label for="newName">New Name: </label>
-        <input type="text" name="newName" id="newName">
+        <div class="inputs">
+            <label for="newName">New Name: </label>
+            <input type="text" name="newName" id="newName">
+        </div>
         
-        <label for="newPlayerCount"> New Player Count:</label>
-        <input type="text" name="newPlayerCount" id="newPlayerCount">
+        <div class="inputs">
+            <label for="newPlayerCount"> New Player Count:</label>
+            <input type="text" name="newPlayerCount" id="newPlayerCount">
+        </div>
         
-        <label for="newIndoor"> New Indoor:</label>
-        <input type="text" name="newIndoor" id="newIndoor">
+        <div class="inputs">
+            <label for="newIndoor"> New Indoor:</label>
+            <input type="text" name="newIndoor" id="newIndoor">
+        </div>
+
+        <div class="inputs">
+            <label for="newRefereeCount">New Referee Count: </label>
+            <input type="text" name="newRefereeCount" id="refereeCount">
+        </div>
         
-        <label for="newRefereeCount">New Referee Count: </label>
-        <input type="text" name="newRefereeCount" id="refereeCount">
+        <div class="inputs">
+            <label for="newOrigin">New Referee Count:</label>
+            <input type="text" name="newOrigin" id="newOrigin">
+        </div>
         
-        <label for="newOrigin">New Referee Count:</label>
-        <input type="text" name="newOrigin" id="newOrigin">
-        
-        <input type="submit" name="submit" value="Submit">
-        <input type="submit" name="homePage "value="Home Page">
+        <div class="buttons">
+            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="homePage "value="Home Page">
+        </div>
         
     
     </form>
