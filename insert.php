@@ -13,7 +13,6 @@
     <title>Insert</title>
 </head>
 <body>
-    <div class="connectionMsg">Connection was successfull</div>
     <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
@@ -47,15 +46,13 @@
         } catch (PDOException $error) {
             echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
         }
-        
         function clean($d){
         $data = trim($d);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
-        
-        ?>
+    ?>
     <form action="" method="post">
         <h1>Insert change</h1>
         <div class="inputs">
