@@ -14,8 +14,7 @@
         <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
-        echo "<div class='connectionMsg'>Connection was successfull</div>"; 
-               
+        echo "<div class='connectionMsg'>Connection was successfull</div>";       
         $submitButton = filter_input(INPUT_POST, 'submit');
         $updateCommand; 
         if (isset($submitButton)){
@@ -85,19 +84,18 @@
                 $updateQuery = $dbConn->prepare($updateCommand);
                 $updateExecute = $updateQuery->execute();
                 if($updateExecute){
-                echo "Query executed successfully";
+                    echo "Query executed successfully";
                 } else {
-                echo "Not so successful";
+                    echo "Not so successful";
                 }
-            }else {
+                }else {
                 echo "<p> no valid entry within database </p>";
+                
             }
             
-
+            }
             
-        }
-        
-        } catch (PDOException $error) {
+            }catch (PDOException $error) {
             echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
         }
         
