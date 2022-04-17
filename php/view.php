@@ -21,6 +21,12 @@
             $viewCommand = "SELECT * FROM sport WHERE '$recordNumbers";
             $viewQuery = $dbConn->prepare($viewCommand);
             $viewExecute = $viewQuery->execute();
+            
+            if($insertExecute){
+                echo "Query executed successfully";
+            } else {
+                echo "Not so successful";
+            }
         }
     }catch (PDOException $error){
         echo "Connection error".$error->getMessage();
