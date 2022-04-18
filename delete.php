@@ -59,7 +59,6 @@
             
         <div class="buttons">
             <input type="submit" name="submit" value="Submit">
-            <input type="submit" name="homepage"value="Home Page">
         </div>
     </form>
 

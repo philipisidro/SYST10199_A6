@@ -10,112 +10,86 @@
     <title>Document</title>
 </head>
 <body>    
-        <?php
+    <?php
     try{
         $dbConn = new PDO("mysql:host=localhost;dbname=isidrop_college", $user, $password );
         echo "<div class='connectionMsg'>Connection was successfull</div>";       
         $submitButton = filter_input(INPUT_POST, 'submit');
-        $updateCommand; 
         if (isset($submitButton)){
-            $sport_id = filter_input(INPUT_POST, 'sport_id');
-            $newName = filter_input(INPUT_POST, 'newName');
-            $newPlayerCount = filter_input(INPUT_POST, 'newPlayerCount');
-            $newIndoor = filter_input(INPUT_POST, 'newIndoor');
-            $newRefereeCount = filter_input(INPUT_POST, 'newRefereeCount');
-            $newOrigin = filter_input(INPUT_POST, 'newOrigin');
-                                    
-            if(!isset($newName)){
-                $updateCommand = "UPDATE sport SET name='$newName' WHERE sport_id='$sport_id'";
+            $sport_id = intVal(filter_input(INPUT_POST, 'sport_id'));
+            $field = filter_input(INPUT_POST, 'fields');
+            
+            $input = filter_input(INPUT_POST, "type");
+        
+    
+            if ($field === 'name'){
+                echo "name ran";
+                echo $sport_id;
+                $newName = strval($input);
+                echo $newName;
+                $updateCommand = "UPDATE sport SET name='$newName' WHERE sport_id=$sport_id";
                 $updateQuery = $dbConn->prepare($updateCommand);
                 $updateExecute = $updateQuery->execute();
-            }
-            
-            if(!isset($newPlayerCount)){
-                $updateCommand = "UPDATE sport SET playerCount = $newPlayerCount WHERE sport_id=$sport_id";
+            }else if ($field === 'playerCount'){
+                echo "player ran";
+                $newPlayerCount = intval($input);
+                $updateCommand = "UPDATE sport SET player_count=$newPlayerCount WHERE sport_id=$sport_id";
                 $updateQuery = $dbConn->prepare($updateCommand);
                 $updateExecute = $updateQuery->execute();
-            }
-            
-            if(!isset($newIndoor)){
-                $updateCommand = "UPDATE sport SET name='$newIndoor' WHERE sport_id=$sport_id";
+            }else if($field === 'indoor'){
+                echo "indoor ran";
+                $newIndoor = intval($input);
+                $updateCommand = "UPDATE sport SET indoor='$newIndoor' WHERE sport_id=$sport_id";
                 $updateQuery =$dbConn->prepare($updateCommmand);
                 $updateExecute = $updateQuery->execute();
-            }
-            
-            if(!isset($newReferee)){
-                $updateCommand = "UPDATE sport SET name=$newReferee WHERE sport_id=$sport_id";
+            }else if($field === 'referee'){
+                echo ("referee ran");
+                $newReferee = intval($input);
+                $updateCommand = "UPDATE sport SET referee_count=$newReferee WHERE sport_id=$sport_id";
                 $updateQuery = $dbConn->prepare($updateCommand);
                 $updateExecute = $updateQuery->execute();
-            }
-            
-            if(!isset($newOrigin)){
-                $updateCommand = "UPDATE sport SET name='$newOrigin' WHERE sport_id=$sport_id";
+            }else if($origin === 'origin'){
+                echo ("origin ran");
+                $newOrigin = strval($input);
+                $updateCommand = "UPDATE sport SET origin='$newOrigin' WHERE sport_id=$sport_id";
                 $updateQuery = $dbConn->prepare($updateCommand);
                 $updateExecute = $updateQuery->execute();
+            }else {
+                echo "it failed";
             }
         }
     }catch (PDOException $error) {
         echo "<div class='connectionMsg'>'connection error'.$error->getMessage()</div>";
-    }
-    function clean($d){
-        $data = trim($d);
-        $dataStripped = stripslashes($data);
-        $dataHtml = htmlspecialchars($dataStripped);
-        return $dataHtml;
-    }   
+    }  
     ?>
 
-    <form action="" method="post">
+    <form action="" method="post">   
 
         <h1>Update</h1>
         
         <div class="inputs">
             <label for="sportid">Where:</label>
-            <input type="text" name="sport_id" id="sportid">
+            <input type="text" name="sport_id" id="sportid" required>
         </div>
         
         <div class="inputs">
-            <label for="newName">New Name: </label>
-            <input type="text" name="newName" id="newName">
+            <select name="fields" id="fields">
+                <option value="name">Name</option>
+                <option value="playerCount">Player Count</option>
+                <option value="indoor">Indoor</option>
+                <option value="referee">Referee Count</option>
+                <option value="origin">Origin</option>
+            </select>
         </div>
         
         <div class="inputs">
-            <label for="newPlayerCount"> New Player Count:</label>
-            <input type="text" name="newPlayerCount" id="newPlayerCount">
+            <label for="input">Update:</label>
+            <input type="text" name="type" id="type">
         </div>
-        
-        <div class="inputs">
-            <label for="newIndoor"> New Indoor:</label>
-            <input type="text" name="newIndoor" id="newIndoor">
-        </div>
-
-        <div class="inputs">
-            <label for="newRefereeCount">New Referee Count: </label>
-            <input type="text" name="newRefereeCount" id="refereeCount">
-        </div>
-        
-        <div class="inputs">
-            <label for="newOrigin">New Referee Count:</label>
-            <input type="text" name="newOrigin" id="newOrigin">
-        </div>
-        
         <div class="buttons">
             <input type="submit" name="submit" value="Submit">
-            <input type="submit" name="homePage "value="Home Page">
         </div>
-        
-        <?php
-            if (isset($submitButton)){
-                if($updateExecute){
-                    echo "Query executed successfully";
-                }else {
-                    if (empty($errMsg)){
-                        echo "Query failed Bad Query";
-                    }
-                    echo "Query failed! ".$errMsg;
-                }
-            }
-            ?>
+
     </form>
 
 
