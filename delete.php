@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<!--change-->
+<!--deletes a row from the database based on the sport_id given-->
 
+<!DOCTYPE html>
 <html lang="en">
     
 <?php require('./connect.php');?>
@@ -21,18 +21,12 @@
         $submitButton = filter_input(INPUT_POST, 'submit');
         if (isset($submitButton)){
             echo "submit work";
-            $deleteName = strval(filter_input(INPUT_POST, 'name'));
+            $sport_id = strval(filter_input(INPUT_POST, 'sport_id'));
             clean($deleteName);
-            $deleteCommand = "DELETE FROM sport WHERE name='$deleteName'";
+            $deleteCommand = "DELETE FROM sport WHERE sport_id=$sport_id";
             echo $deletCommand;
             $deleteQuery = $dbConn->prepare($deleteCommand);
             $deleteExecute = $deleteQuery->execute();
-            
-            if ($deleteExecute){
-                echo "Query executed successfully";
-            } else {
-                echo "Not so successful";
-            }
         }else {
             
         }     
@@ -53,7 +47,7 @@
         <h1>Delete</h1>
         
         <div class="inputs">
-            <label for="name">Name: </label>
+            <label for="sport_id">Name: </label>
             <input type="text" name="name" id="name">
         </div>
             

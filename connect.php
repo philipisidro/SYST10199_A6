@@ -1,4 +1,4 @@
-<!--change-->
+<!--gives access ti the SQL data base-->
 <?php
 
 $user = "isidrop_webuser";

@@ -1,3 +1,5 @@
+<!--ask for sport_id number that pulls single row, what coloumn to update and what the new information is-->
+
 <!DOCTYPE html>
 <html lang="en">
 <?php require('./connect.php');?>

@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<!--change-->
+<!--Uses the sport_id number to a certain row of information or display all infomration form the table-->  
 
-    <?php require('./connect.php');?>
+<!DOCTYPE html>
+<?php require('./connect.php');?>
 
 <html lang="en">
 <head>

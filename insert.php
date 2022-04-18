@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<!--The main index file that contains links to all the other pages-->
+
 <html lang="en">
     
 <?php require('./connect.php');?>
